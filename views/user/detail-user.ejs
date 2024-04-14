@@ -4,6 +4,14 @@
     <%- include('../includes/navigation.ejs') %>
 
     <main>
-      <h1>Details Users</h1>
+      <main class="centered">
+        <p>Student Name : <%= user.name %></p>
+        <hr>
+        <p>Student Nim : <%= user.nim %></p>
+        <hr>
+        <p>Student Address : <%= user.address %></p>
+        <hr>
+        <a class="btn" href="/">Back To Home</a>
+      </main>
     </main>
 <%- include('../includes/end.ejs') %>

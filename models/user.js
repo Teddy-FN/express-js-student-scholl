@@ -35,8 +35,16 @@ module.exports = class Users {
     });
   }
 
-  // Fetch Users
+  // Fetch All Users
   static fetchAllUsers(cb) {
     getUsersFromFile(cb);
+  }
+
+  // get Details
+  static findById(id, cb) {
+    getUsersFromFile((users) => {
+      const getUser = users.find((items) => items.id === Number(id));
+      cb(getUser);
+    });
   }
 };
