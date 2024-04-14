@@ -18,6 +18,9 @@ app.use(express.static(path.join(__dirname, "public")));
 // Users Route
 app.use("/user", userRoute);
 
+// Teacher Route
+// app.use('/teacher')
+
 // Admin Route
 app.use(homeRoute);
 
