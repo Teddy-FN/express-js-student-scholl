@@ -2,7 +2,7 @@ const Users = require("../models/user");
 
 // Just Render Form Add User
 exports.user = (req, res, next) => {
-  res.render("users.ejs", {
+  res.render("user/add-student.ejs", {
     pageTitle: "Users",
     path: "/user/users",
   });
@@ -21,7 +21,6 @@ exports.postUser = (req, res, next) => {
 
 exports.getDetailUser = (req, res, next) => {
   Users.findById(req.params.id, (user) => {
-    console.log('user =>', user);
     // get Detail User
     res.render("user/detail-user.ejs", {
       pageTitle: "Detail User",
