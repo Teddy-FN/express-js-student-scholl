@@ -5,6 +5,7 @@ const path = require("path");
 const app = express();
 const homeRoute = require("./routes/home");
 const userRoute = require("./routes/user");
+const teacherRoute = require("./routes/teacher");
 const errorRoute = require("./controller/404");
 
 // View Engine
@@ -19,9 +20,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/user", userRoute);
 
 // Teacher Route
-// app.use('/teacher')
+app.use("/teacher", teacherRoute);
 
-// Admin Route
+// Home Route
 app.use(homeRoute);
 
 // 404 Route

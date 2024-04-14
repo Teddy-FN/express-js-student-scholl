@@ -1,12 +1,11 @@
-<%- include('includes/head.ejs') %>
+<%- include('../includes/head.ejs') %>
   </head>
   <body>
-    <%- include('includes/navigation.ejs') %>
-
+    <%- include('../includes/navigation.ejs') %>
     <main>
-      <form action="/user/add-user" method="POST">
+      <form action="/teacher/add-teacher" method="POST">
         <div>
-          <label for="name">Name</label>
+          <label for="name">Name Teacher</label>
           <input type="text" name="name" id="name" />
         </div>
         <div>
@@ -14,12 +13,16 @@
           <input type="number" name="nim" id="nim" />
         </div>
         <div>
+          <label for="phone">No Handphone</label>
+          <input type="number" name="phone" id="phone" />
+        </div>
+        <div>
           <label for="address">Address</label>
           <input type="text" name="address" id="address" />
         </div>
         <div>
-          <button type="submit">Add Users</button>
+          <button type="submit">Add Teacher</button>
         </div>
       </form>
     </main>
-<%- include('includes/end.ejs') %>
+<%- include('../includes/end.ejs') %>
