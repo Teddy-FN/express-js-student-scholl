@@ -39,6 +39,16 @@ module.exports = class Teacher {
     getTeacherFromFile(cb);
   }
 
+  // Delete Teacher From Data
+  static deleteTeacherById(id) {
+    getTeacherFromFile((teachers) => {
+      const deleteTeacher = teachers.filter((teacher) => teacher.id !== id);
+      fs.writeFile(p, JSON.stringify(deleteTeacher), (err) => {
+        console.log(err);
+      });
+    });
+  }
+
   // Get Details By Id
   static getDetailTeacherById(id, cb) {
     getTeacherFromFile((teachers) => {

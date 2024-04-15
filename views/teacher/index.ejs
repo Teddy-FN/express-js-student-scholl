@@ -20,6 +20,10 @@
                 <form action="/teacher/detail-teacher/<%= user.id %>" method="POST">
                     <button type="submit">Details Teacher</button>
                 </form>
+                <form action="/teacher/delete-teacher" method="POST">
+                  <input type="hidden" value="<%= user.id %>" name="id" id="id">
+                  <button type="submit">Delete Teacher</button>
+                </form>
              </li>
           <% }); %> 
          </ul>
