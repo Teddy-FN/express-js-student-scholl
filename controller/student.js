@@ -32,6 +32,13 @@ exports.postUser = (req, res, next) => {
   res.redirect("/student/student");
 };
 
+// Delete Data Student
+exports.deleteDataStudent = (req, res, next) => {
+  Student.deleteStudent(req.body.id);
+  res.redirect("/student/student");
+};
+
+// Get Detail
 exports.getDetailUser = (req, res, next) => {
   Student.findById(req.params.id, (user) => {
     // get Detail User

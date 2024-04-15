@@ -12,6 +12,10 @@
         <p>Student Address : <%= user.address %></p>
         <hr>
         <a class="btn" href="/student/student">Back To Home</a>
+        <form action="/student/delete-student" method="POST">
+          <input type="hidden" value="<%= user.id %>" name="id" id="id">
+          <button type="submit">Delete Student</button>
+        </form>
       </main>
     </main>
 <%- include('../includes/end.ejs') %>
