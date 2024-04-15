@@ -4,7 +4,9 @@
     <%- include('../includes/navigation.ejs') %>
     <main>
       <div>
-        <a href="/teacher/add-teacher">Add Teacher</a>
+        <%- include('../includes/add.ejs', {
+          addNewTitle: addNewTitle
+        }) %>
       </div>
       <h1>Teacher List :</h1>
 
