@@ -1,4 +1,4 @@
-const Users = require("../models/user");
+const Users = require("../models/student");
 
 // Just Render Form Add User
 exports.user = (req, res, next) => {

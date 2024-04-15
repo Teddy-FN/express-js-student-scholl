@@ -2,8 +2,13 @@ const express = require("express");
 const router = express.Router();
 const teacherController = require("../controller/teacher");
 
-router.get("/teacher", teacherController.renderFormTeacher);
+// Home Teacher List Page
+router.get("/teacher", teacherController.renderTeacher);
 
-router.post("/teacher/add-teacher", teacherController.postAddTeacher);
+// Render Form
+router.get("/add-teacher", teacherController.renderFormTeacher);
+
+// Post add New Teacher
+router.post("/add-teacher", teacherController.postAddTeacher);
 
 module.exports = router;

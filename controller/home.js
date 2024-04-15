@@ -1,6 +1,6 @@
 // path = require("path");
 
-const Users = require("../models/user");
+const Users = require("../models/student");
 
 exports.getHome = (req, res, next) => {
   Users.fetchAllUsers((user) => {
