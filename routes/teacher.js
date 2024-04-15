@@ -3,12 +3,15 @@ const router = express.Router();
 const teacherController = require("../controller/teacher");
 
 // Home Teacher List Page
-router.get("/teacher", teacherController.renderTeacher);
+router.get("/teacher", teacherController?.renderTeacher);
 
 // Render Form
-router.get("/add-teacher", teacherController.renderFormTeacher);
+router.get("/add-teacher", teacherController?.renderFormTeacher);
 
 // Post add New Teacher
-router.post("/add-teacher", teacherController.postAddTeacher);
+router.post("/add-teacher", teacherController?.postAddTeacher);
+
+// Get Detail By ID
+router.post("/detail-teacher/:id", teacherController?.renderDetailTeacher);
 
 module.exports = router;

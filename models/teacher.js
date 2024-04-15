@@ -34,7 +34,16 @@ module.exports = class Teacher {
     });
   }
 
+  // Get All Teacher
   static getAllTeacher(cb) {
     getTeacherFromFile(cb);
+  }
+
+  // Get Details By Id
+  static getDetailTeacherById(id, cb) {
+    getTeacherFromFile((teachers) => {
+      const teacherById = teachers.find((teacher) => teacher.id === id);
+      cb(teacherById);
+    });
   }
 };
