@@ -35,6 +35,12 @@ exports.renderDetailTeacher = (req, res, next) => {
   // res.redirect("/teacher/teacher");
 };
 
+// Delete Data Teacher
+exports.deleteDataTeacher = (req, res, next) => {
+  Teacher.deleteTeacherById(req.body.id);
+  res.redirect("/teacher/teacher");
+};
+
 // Save New Teacher
 exports.postAddTeacher = (req, res, next) => {
   console.log("req.body =>", req.body);

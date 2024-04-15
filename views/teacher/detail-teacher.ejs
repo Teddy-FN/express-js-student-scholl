@@ -8,5 +8,9 @@
       <p>Nim:<%= teacher.nim %></p>
       <p>Address:<%= teacher.address %></p>
       <a href="/teacher/teacher">Back To List</a>
+      <form action="/teacher/delete-teacher" method="POST">
+        <input type="hidden" value="<%= teacher.id %>" name="id" id="id">
+        <button type="submit">Delete Teacher</button>
+      </form>
     </main>
 <%- include('../includes/end.ejs') %>
