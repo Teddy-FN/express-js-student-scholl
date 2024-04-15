@@ -43,7 +43,7 @@ module.exports = class Student {
   // get Details
   static findById(id, cb) {
     getStudentFromFile((users) => {
-      const getUser = users.find((items) => items.id === Number(id));
+      const getUser = users.find((items) => items.id === id);
       cb(getUser);
     });
   }
