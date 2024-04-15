@@ -1,0 +1,12 @@
+<%- include('../includes/head.ejs') %>
+  </head>
+  <body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+      <h1>Detail Teacher :</h1>
+      <p>Name: <%= teacher.name %></p>
+      <p>Nim:<%= teacher.nim %></p>
+      <p>Address:<%= teacher.address %></p>
+      <a href="/teacher/teacher">Back To List</a>
+    </main>
+<%- include('../includes/end.ejs') %>
