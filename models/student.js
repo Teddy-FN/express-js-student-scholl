@@ -40,6 +40,16 @@ module.exports = class Student {
     getStudentFromFile(cb);
   }
 
+  // Delete Student
+  static deleteStudent(id) {
+    getStudentFromFile((students) => {
+      const deleteStudentData = students.filter((student) => student.id !== id);
+      fs.writeFile(p, JSON.stringify(deleteStudentData), (err) => {
+        console.log(err);
+      });
+    });
+  }
+
   // get Details
   static findById(id, cb) {
     getStudentFromFile((users) => {

@@ -15,5 +15,6 @@ router.post("/add-teacher", teacherController?.postAddTeacher);
 router.post("/detail-teacher/:id", teacherController?.renderDetailTeacher);
 
 // Delete Teacher
-router.post('/delete-teacher', teacherController?.deleteDataTeacher)
+router.post("/delete-teacher", teacherController?.deleteDataTeacher);
+
 module.exports = router;
