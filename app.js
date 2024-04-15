@@ -4,7 +4,7 @@ const path = require("path");
 
 const app = express();
 const homeRoute = require("./routes/home");
-const userRoute = require("./routes/user");
+const studentRoute = require("./routes/student");
 const teacherRoute = require("./routes/teacher");
 const errorRoute = require("./controller/404");
 
@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Users Route
-app.use("/user", userRoute);
+app.use("/student", studentRoute);
 
 // Teacher Route
 app.use("/teacher", teacherRoute);
