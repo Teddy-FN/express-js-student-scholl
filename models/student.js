@@ -7,7 +7,7 @@ const p = path.join(
   "user.json"
 );
 
-const getUsersFromFile = (cb) => {
+const getStudentFromFile = (cb) => {
   fs.readFile(p, (err, fileContent) => {
     if (err) {
       return cb([]);
@@ -17,17 +17,17 @@ const getUsersFromFile = (cb) => {
   });
 };
 
-module.exports = class Users {
+module.exports = class Student {
   constructor(contrusctor) {
     this.name = contrusctor.name;
     this.nim = contrusctor.nim;
     this.address = contrusctor.address;
   }
 
-  saveUsers() {
+  saveStudent() {
     // Save Using File
     this.id = Math.random().toString();
-    getUsersFromFile((user) => {
+    getStudentFromFile((user) => {
       user.push(this);
       fs.writeFile(p, JSON.stringify(user), (err) => {
         console.log(err);
@@ -35,14 +35,14 @@ module.exports = class Users {
     });
   }
 
-  // Fetch All Users
-  static fetchAllUsers(cb) {
-    getUsersFromFile(cb);
+  // Fetch All Student
+  static fetchAllStudent(cb) {
+    getStudentFromFile(cb);
   }
 
   // get Details
   static findById(id, cb) {
-    getUsersFromFile((users) => {
+    getStudentFromFile((users) => {
       const getUser = users.find((items) => items.id === Number(id));
       cb(getUser);
     });

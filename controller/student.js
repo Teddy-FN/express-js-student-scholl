@@ -1,26 +1,40 @@
-const Users = require("../models/student");
+const Student = require("../models/student");
 
-// Just Render Form Add User
-exports.user = (req, res, next) => {
+// Index Student List
+exports.renderStundent = (req, res, next) => {
+  Student.fetchAllStudent((students) => {
+    console.log("STUDENT =>", students);
+    res.render("user/index.ejs", {
+      pageTitle: "Student",
+      path: "/student/student",
+      addNewTitle: "student",
+      students: students,
+    });
+  });
+};
+
+// Render Form Add New Student
+exports.renderFormAddStudent = (req, res, next) => {
   res.render("user/add-student.ejs", {
-    pageTitle: "Users",
-    path: "/user/users",
+    pageTitle: "Add Student",
+    path: "/student/student",
+    addNewTitle: "student",
   });
 };
 
 // Add New User
 exports.postUser = (req, res, next) => {
-  const user = new Users({
+  const user = new Student({
     name: req.body.name,
     nim: req.body.nim,
     address: req.body.address,
   });
-  user.saveUsers();
-  res.redirect("/");
+  user.saveStudent();
+  res.redirect("/student/student");
 };
 
 exports.getDetailUser = (req, res, next) => {
-  Users.findById(req.params.id, (user) => {
+  Student.findById(req.params.id, (user) => {
     // get Detail User
     res.render("user/detail-user.ejs", {
       pageTitle: "Detail User",

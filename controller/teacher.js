@@ -7,6 +7,7 @@ exports.renderTeacher = (req, res, next) => {
       pageTitle: "Teacher List",
       path: "/teacher/teacher",
       teacher: teacher,
+      addNewTitle: 'teacher'
     });
   });
 };
@@ -16,6 +17,7 @@ exports.renderFormTeacher = (req, res, next) => {
   res.render("teacher/add-teacher.ejs", {
     pageTitle: "Add Teacher",
     path: "/teacher/teacher",
+    addNewTitle: 'teacher'
   });
 };
 

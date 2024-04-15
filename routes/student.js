@@ -1,13 +1,17 @@
 const express = require("express");
 const controller = require("../controller/student");
 const router = express.Router();
-// Post New Users
+
+// Home Student List Page
+router.get("/student", controller.renderStundent);
+
+// Render Add Form
+router.get("/add-student", controller.renderFormAddStudent);
+
+// Post Add New Student
 router.post("/add-student", controller.postUser);
 
-// Get All User
-router.get("/student", controller.user);
-
-// Details User
+// Details Student
 router.post("/student/:id", controller.getDetailUser);
 
 module.exports = router;

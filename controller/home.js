@@ -1,9 +1,9 @@
 // path = require("path");
 
-const Users = require("../models/student");
+const Student = require("../models/student");
 
 exports.getHome = (req, res, next) => {
-  Users.fetchAllUsers((user) => {
+  Student.fetchAllStudent((user) => {
     res.render("home/home.ejs", {
       pageTitle: "HOME",
       path: "/",
