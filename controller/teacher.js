@@ -18,6 +18,7 @@ exports.renderFormTeacher = (req, res, next) => {
     pageTitle: "Add Teacher",
     path: "/teacher/teacher",
     addNewTitle: "teacher",
+    edit: false,
   });
 };
 
@@ -41,9 +42,27 @@ exports.deleteDataTeacher = (req, res, next) => {
   res.redirect("/teacher/teacher");
 };
 
+// Render Edit Teacher
+exports.renderEditFormTeacher = (req, res, next) => {
+  const idTeacher = req.params.id;
+  console.log("idTeacher =>", idTeacher);
+  Teacher.getDetailTeacherById(idTeacher, (teacher) => {
+    console.log("TEACHER =>", teacher);
+    res.render("teacher/add-teacher.ejs", {
+      pageTitle: "Add Teacher",
+      path: "/teacher/teacher",
+      addNewTitle: "teacher",
+      edit: true,
+      teacher: teacher,
+    });
+  });
+};
+
+// Save Edit Teacher
+exports.postEditTeacher = (req, res, next) => {};
+
 // Save New Teacher
 exports.postAddTeacher = (req, res, next) => {
-  console.log("req.body =>", req.body);
   const teacher = new Teacher(req.body);
   teacher.saveTeacher();
   res.redirect("/teacher/teacher");

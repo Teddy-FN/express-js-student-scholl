@@ -17,4 +17,10 @@ router.post("/detail-teacher/:id", teacherController?.renderDetailTeacher);
 // Delete Teacher
 router.post("/delete-teacher", teacherController?.deleteDataTeacher);
 
+// Render Form Edit
+router.get("/edit-teacher/:id", teacherController?.renderEditFormTeacher);
+
+// Edit Teacher
+router.post("/edit-teacher/:id", teacherController?.postEditTeacher);
+
 module.exports = router;

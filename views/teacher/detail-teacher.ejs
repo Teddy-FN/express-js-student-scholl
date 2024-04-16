@@ -12,5 +12,6 @@
         <input type="hidden" value="<%= teacher.id %>" name="id" id="id">
         <button type="submit">Delete Teacher</button>
       </form>
+      <a href="/teacher/edit-teacher/<%= teacher.id %>?edit=true">Edit Teacher</a>
     </main>
 <%- include('../includes/end.ejs') %>

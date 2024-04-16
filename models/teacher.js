@@ -19,6 +19,7 @@ const getTeacherFromFile = (cb) => {
 
 module.exports = class Teacher {
   constructor(params) {
+    this.id = null;
     this.name = params.name;
     this.nim = params.nim;
     this.address = params.address;
