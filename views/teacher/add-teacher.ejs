@@ -3,25 +3,27 @@
   <body>
     <%- include('../includes/navigation.ejs') %>
     <main>
-      <form action="/teacher/add-teacher" method="POST">
+      <form action="<% if (edit) { %>/teacher/add-teacher<% } else {%>/teacher/add-teacher/<%= teacher.id %><% } %>" method="POST">
         <div>
           <label for="name">Name Teacher</label>
-          <input type="text" name="name" id="name" />
+          <input type="text" name="name" id="name" value="<% if (edit) { %><%= teacher.name %><% } %>" />
         </div>
         <div>
           <label for="nim">Nim</label>
-          <input type="number" name="nim" id="nim" />
+          <input type="number" name="nim" id="nim" value="<% if (edit) { %><%= teacher.nim %><% } %>" />
         </div>
         <div>
           <label for="phone">No Handphone</label>
-          <input type="number" name="phone" id="phone" />
+          <input type="number" name="phone" id="phone" value="<% if (edit) { %><%= teacher.phone %><% } %>" />
         </div>
         <div>
           <label for="address">Address</label>
-          <input type="text" name="address" id="address" />
+          <input type="text" name="address" id="address" value="<% if (edit) { %><%= teacher.address %><% } %>" />
         </div>
         <div>
-          <button type="submit">Add Teacher</button>
+          <button type="submit">
+            <% if (edit) { %>Update Teacher<% } else { %>Add Teacher<% } %>
+          </button>
         </div>
       </form>
     </main>
