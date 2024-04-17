@@ -19,19 +19,31 @@ const getTeacherFromFile = (cb) => {
 
 module.exports = class Teacher {
   constructor(params) {
-    this.id = null;
+    this.id = params.id || null;
     this.name = params.name;
     this.nim = params.nim;
     this.address = params.address;
+    this.phone = params.phone;
   }
 
   saveTeacher() {
-    this.id = Math.random().toString();
-    getTeacherFromFile((teacher) => {
-      teacher.push(this);
-      fs.writeFile(p, JSON.stringify(teacher), (err) => {
-        console.log(err);
-      });
+    getTeacherFromFile((teachers) => {
+      if (this.id) {
+        const findIndexTeacher = teachers.findIndex(
+          (teacher) => teacher.id === this.id
+        );
+        const updatedData = [...teachers];
+        updatedData[findIndexTeacher] = this;
+        fs.writeFile(p, JSON.stringify(updatedData), (err) => {
+          console.log(err);
+        });
+      } else {
+        this.id = Math.random().toString();
+        teachers.push(this);
+        fs.writeFile(p, JSON.stringify(teachers), (err) => {
+          console.log(err);
+        });
+      }
     });
   }
 

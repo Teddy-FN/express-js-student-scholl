@@ -59,7 +59,12 @@ exports.renderEditFormTeacher = (req, res, next) => {
 };
 
 // Save Edit Teacher
-exports.postEditTeacher = (req, res, next) => {};
+exports.postEditTeacher = (req, res, next) => {
+  console.log("REQ BODY =>", req.body);
+  const teacher = new Teacher(req.body);
+  teacher.saveTeacher();
+  res.redirect("/teacher/teacher");
+};
 
 // Save New Teacher
 exports.postAddTeacher = (req, res, next) => {
