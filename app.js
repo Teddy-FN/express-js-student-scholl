@@ -4,9 +4,6 @@ const path = require("path");
 
 const app = express();
 
-// Database
-const db = require("./utils/database");
-
 const homeRoute = require("./routes/home");
 const studentRoute = require("./routes/student");
 const teacherRoute = require("./routes/teacher");
@@ -17,12 +14,6 @@ app.set("engine view", "ejs");
 app.set("views", "views");
 
 app.use(bodyParser.urlencoded({ extended: false }));
-
-db.execute("SELECT * FROM teacher")
-  .then((result) => {
-    console.log('RESULT =>', result);
-  })
-  .catch((err) => {});
 
 app.use(express.static(path.join(__dirname, "public")));
 
