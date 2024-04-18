@@ -2,14 +2,16 @@ const Teacher = require("../models/teacher");
 
 // Render Home Teacher List
 exports.renderTeacher = (req, res, next) => {
-  Teacher.getAllTeacher((teacher) => {
-    res.render("teacher/index.ejs", {
-      pageTitle: "Teacher List",
-      path: "/teacher/teacher",
-      teacher: teacher,
-      addNewTitle: "teacher",
-    });
-  });
+  Teacher.getAllTeacher()
+    .then(([teacher, row]) => {
+      res.render("teacher/index.ejs", {
+        pageTitle: "Teacher List",
+        path: "/teacher/teacher",
+        teacher: teacher,
+        addNewTitle: "teacher",
+      });
+    })
+    .catch((err) => console.log(err));
 };
 
 // Render Form Add Teacher
@@ -24,16 +26,18 @@ exports.renderFormTeacher = (req, res, next) => {
 
 // Render Detail Teacher
 exports.renderDetailTeacher = (req, res, next) => {
-  console.log("REQ PARAMS", req.params.id);
-  Teacher.getDetailTeacherById(req.params.id, (teacher) => {
-    res.render("teacher/detail-teacher.ejs", {
-      pageTitle: "Detail Teacher",
-      path: "/teacher/teacher",
-      addNewTitle: "teacher",
-      teacher: teacher,
+  Teacher.getDetailTeacherById(req.params.id)
+    .then(([teacher, table]) => {
+      res.render("teacher/detail-teacher.ejs", {
+        pageTitle: "Detail Teacher",
+        path: "/teacher/teacher",
+        addNewTitle: "teacher",
+        teacher: teacher[0],
+      });
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  });
-  // res.redirect("/teacher/teacher");
 };
 
 // Delete Data Teacher
@@ -45,9 +49,7 @@ exports.deleteDataTeacher = (req, res, next) => {
 // Render Edit Teacher
 exports.renderEditFormTeacher = (req, res, next) => {
   const idTeacher = req.params.id;
-  console.log("idTeacher =>", idTeacher);
   Teacher.getDetailTeacherById(idTeacher, (teacher) => {
-    console.log("TEACHER =>", teacher);
     res.render("teacher/add-teacher.ejs", {
       pageTitle: "Add Teacher",
       path: "/teacher/teacher",
@@ -60,7 +62,6 @@ exports.renderEditFormTeacher = (req, res, next) => {
 
 // Save Edit Teacher
 exports.postEditTeacher = (req, res, next) => {
-  console.log("REQ BODY =>", req.body);
   const teacher = new Teacher(req.body);
   teacher.saveTeacher();
   res.redirect("/teacher/teacher");
@@ -69,6 +70,12 @@ exports.postEditTeacher = (req, res, next) => {
 // Save New Teacher
 exports.postAddTeacher = (req, res, next) => {
   const teacher = new Teacher(req.body);
-  teacher.saveTeacher();
-  res.redirect("/teacher/teacher");
+  teacher
+    .saveTeacher()
+    .then(() => {
+      res.redirect("/teacher/teacher");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
