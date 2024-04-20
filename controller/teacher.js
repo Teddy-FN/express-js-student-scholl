@@ -2,8 +2,8 @@ const Teacher = require("../models/teacher");
 
 // Render Home Teacher List
 exports.renderTeacher = (req, res, next) => {
-  Teacher.getAllTeacher()
-    .then(([teacher, row]) => {
+  Teacher.findAll()
+    .then((teacher) => {
       res.render("teacher/index.ejs", {
         pageTitle: "Teacher List",
         path: "/teacher/teacher",
@@ -69,9 +69,7 @@ exports.postEditTeacher = (req, res, next) => {
 
 // Save New Teacher
 exports.postAddTeacher = (req, res, next) => {
-  const teacher = new Teacher(req.body);
-  teacher
-    .saveTeacher()
+  Teacher.create(req.body)
     .then(() => {
       res.redirect("/teacher/teacher");
     })
