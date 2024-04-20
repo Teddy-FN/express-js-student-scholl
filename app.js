@@ -9,6 +9,9 @@ const studentRoute = require("./routes/student");
 const teacherRoute = require("./routes/teacher");
 const errorRoute = require("./controller/404");
 
+// import sequelize
+const sequelize = require("./utils/database");
+
 // View Engine
 app.set("engine view", "ejs");
 app.set("views", "views");
@@ -29,4 +32,11 @@ app.use(homeRoute);
 // 404 Route
 app.use(errorRoute.errorPage);
 
-app.listen(3000);
+sequelize
+  .sync()
+  .then(() => {
+    app.listen(3000);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
