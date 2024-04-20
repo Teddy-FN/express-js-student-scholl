@@ -2,14 +2,16 @@ const Student = require("../models/student");
 
 // Index Student List
 exports.renderStundent = (req, res, next) => {
-  Student.fetchAllStudent((students) => {
-    res.render("student/index.ejs", {
-      pageTitle: "Student",
-      path: "/student/student",
-      addNewTitle: "student",
-      students: students,
-    });
-  });
+  Student.findAll()
+    .then((students) => {
+      res.render("student/index.ejs", {
+        pageTitle: "Student",
+        path: "/student/student",
+        addNewTitle: "student",
+        students: students,
+      });
+    })
+    .catch((err) => console.log(err));
 };
 
 // Render Form Add New Student
@@ -23,13 +25,13 @@ exports.renderFormAddStudent = (req, res, next) => {
 
 // Add New User
 exports.postUser = (req, res, next) => {
-  const user = new Student({
-    name: req.body.name,
-    nim: req.body.nim,
-    address: req.body.address,
-  });
-  user.saveStudent();
-  res.redirect("/student/student");
+  Student.create(req.body)
+    .then(() => {
+      res.redirect("/student/student");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 // Delete Data Student
@@ -40,12 +42,17 @@ exports.deleteDataStudent = (req, res, next) => {
 
 // Get Detail
 exports.getDetailUser = (req, res, next) => {
-  Student.findById(req.params.id, (user) => {
-    // get Detail User
-    res.render("student/detail-student.ejs", {
-      pageTitle: "Detail student",
-      path: "/student/student",
-      user: user,
-    });
-  });
+  Student.findAll({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((student) => {
+      res.render("student/detail-student.ejs", {
+        pageTitle: "Detail student",
+        path: "/student/student",
+        user: student[0],
+      });
+    })
+    .catch((err) => console.log(err));
 };
