@@ -26,8 +26,13 @@ exports.renderFormTeacher = (req, res, next) => {
 
 // Render Detail Teacher
 exports.renderDetailTeacher = (req, res, next) => {
-  Teacher.getDetailTeacherById(req.params.id)
-    .then(([teacher, table]) => {
+  // find By ID
+  Teacher.findAll({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((teacher) => {
       res.render("teacher/detail-teacher.ejs", {
         pageTitle: "Detail Teacher",
         path: "/teacher/teacher",
