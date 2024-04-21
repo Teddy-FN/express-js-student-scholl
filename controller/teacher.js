@@ -47,29 +47,51 @@ exports.renderDetailTeacher = (req, res, next) => {
 
 // Delete Data Teacher
 exports.deleteDataTeacher = (req, res, next) => {
-  Teacher.deleteTeacherById(req.body.id);
-  res.redirect("/teacher/teacher");
+  Teacher.findByPk(req.body.id)
+    .then((teacher) => {
+      return teacher.destroy();
+    })
+    .then(() => {
+      res.redirect("/teacher/teacher");
+    })
+    .catch((err) => console.log(err));
 };
 
 // Render Edit Teacher
 exports.renderEditFormTeacher = (req, res, next) => {
   const idTeacher = req.params.id;
-  Teacher.getDetailTeacherById(idTeacher, (teacher) => {
-    res.render("teacher/add-teacher.ejs", {
-      pageTitle: "Add Teacher",
-      path: "/teacher/teacher",
-      addNewTitle: "teacher",
-      edit: true,
-      teacher: teacher,
-    });
-  });
+  Teacher.findByPk(idTeacher)
+    .then((teacher) => {
+      console.log("TEACHER =>", teacher);
+      res.render("teacher/add-teacher.ejs", {
+        pageTitle: "Add Teacher",
+        path: "/teacher/teacher",
+        addNewTitle: "teacher",
+        edit: true,
+        teacher: teacher,
+      });
+    })
+    .catch((err) => console.log(err));
 };
 
 // Save Edit Teacher
 exports.postEditTeacher = (req, res, next) => {
-  const teacher = new Teacher(req.body);
-  teacher.saveTeacher();
-  res.redirect("/teacher/teacher");
+  console.log("req.body =>", req.body);
+  if (!req.body.id) {
+    res.redirect("/teacher/teacher");
+  }
+  Teacher.findByPk(req.body.id)
+    .then((teacher) => {
+      teacher.name = req.body.name;
+      teacher.nim = req.body.nim;
+      teacher.phone = req.body.phone;
+      teacher.address = req.body.address;
+      return teacher.save();
+    })
+    .then(() => {
+      res.redirect("/teacher/teacher");
+    })
+    .catch((err) => console.log(err));
 };
 
 // Save New Teacher
