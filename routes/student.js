@@ -14,6 +14,12 @@ router.post("/add-student", controller?.postUser);
 // Details Student
 router.post("/student/:id", controller?.getDetailUser);
 
+// Edit Render
+router.get("/edit-student/:id", controller?.editRender);
+
+// Post Edit Student
+router.post("/edit-student/:id", controller?.postUpdatedStudent);
+
 // Delete Student
 router.post("/delete-student", controller?.deleteDataStudent);
 
