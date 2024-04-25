@@ -40,8 +40,18 @@ app.use(homeRoute);
 // 404 Route
 app.use(errorRoute.errorPage);
 
+Teacher.belongsTo(User, {
+  constraints: true,
+  onDelete: "CASCADE",
+});
+
+Student.belongsTo(User, {
+  constraints: true,
+  onDelete: "CASCADE",
+});
+
 sequelize
-  .sync()
+  .sync({ force: true })
   .then(() => {
     return User.findById(1);
   })
