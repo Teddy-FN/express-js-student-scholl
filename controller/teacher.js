@@ -47,7 +47,7 @@ exports.renderDetailTeacher = (req, res, next) => {
 
 // Delete Data Teacher
 exports.deleteDataTeacher = (req, res, next) => {
-  Teacher.findByPk(req.body.id)
+  Teacher.findById(req.body.id)
     .then((teacher) => {
       return teacher.destroy();
     })
@@ -60,7 +60,7 @@ exports.deleteDataTeacher = (req, res, next) => {
 // Render Edit Teacher
 exports.renderEditFormTeacher = (req, res, next) => {
   const idTeacher = req.params.id;
-  Teacher.findByPk(idTeacher)
+  Teacher.findById(idTeacher)
     .then((teacher) => {
       console.log("TEACHER =>", teacher);
       res.render("teacher/add-teacher.ejs", {
@@ -80,7 +80,7 @@ exports.postEditTeacher = (req, res, next) => {
   if (!req.body.id) {
     res.redirect("/teacher/teacher");
   }
-  Teacher.findByPk(req.body.id)
+  Teacher.findById(req.body.id)
     .then((teacher) => {
       teacher.name = req.body.name;
       teacher.nim = req.body.nim;
