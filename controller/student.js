@@ -54,7 +54,7 @@ exports.getDetailUser = (req, res, next) => {
 
 // Form Edit Render
 exports.editRender = (req, res, next) => {
-  Student.findByPk(req.params.id)
+  Student.findById(req.params.id)
     .then((student) => {
       res.render("student/add-student.ejs", {
         pageTitle: "Add Student",
@@ -72,7 +72,7 @@ exports.postUpdatedStudent = (req, res, next) => {
   if (!req.body.id) {
     res.redirect("/student/student");
   }
-  Student.findByPk(req.body.id)
+  Student.findById(req.body.id)
     .then((student) => {
       student.name = req.body.name;
       student.nim = req.body.nim;
@@ -87,7 +87,7 @@ exports.postUpdatedStudent = (req, res, next) => {
 
 // Delete Data Student
 exports.deleteDataStudent = (req, res, next) => {
-  Student.findByPk(req.body.id)
+  Student.findById(req.body.id)
     .then((student) => {
       return student.destroy();
     })
