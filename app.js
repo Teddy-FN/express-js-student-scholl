@@ -2,20 +2,23 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 
+// Mongo DB
+const mongoClient = require("./utils/database");
+
 const app = express();
 
 // Routes
-const homeRoute = require("./routes/home");
-const studentRoute = require("./routes/student");
-const teacherRoute = require("./routes/teacher");
+// const homeRoute = require("./routes/home");
+// const studentRoute = require("./routes/student");
+// const teacherRoute = require("./routes/teacher");
 
 // Controller
 const errorRoute = require("./controller/404");
 
 // Models
-const Student = require("./models/student");
-const Teacher = require("./models/teacher");
-const User = require("./models/user");
+// const Student = require("./models/student");
+// const Teacher = require("./models/teacher");
+// const User = require("./models/user");
 
 // import sequelize
 const sequelize = require("./utils/database");
@@ -29,44 +32,48 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Users Route
-app.use("/student", studentRoute);
+// app.use("/student", studentRoute);
 
 // Teacher Route
-app.use("/teacher", teacherRoute);
+// app.use("/teacher", teacherRoute);
 
 // Home Route
-app.use(homeRoute);
+// app.use(homeRoute);
 
 // 404 Route
 app.use(errorRoute.errorPage);
 
-Teacher.belongsTo(User, {
-  constraints: true,
-  onDelete: "CASCADE",
+mongoClient(() => {
+  app.listen(3000);
 });
 
-Student.belongsTo(User, {
-  constraints: true,
-  onDelete: "CASCADE",
-});
+// Teacher.belongsTo(User, {
+//   constraints: true,
+//   onDelete: "CASCADE",
+// });
 
-sequelize
-  .sync({ force: true })
-  .then(() => {
-    return User.findById(1);
-  })
-  .then((user) => {
-    if (!user) {
-      return User.create({
-        name: "Teddy",
-        password: "Teddy",
-      });
-    }
-    return user;
-  })
-  .then(() => {
-    app.listen(3000);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// Student.belongsTo(User, {
+//   constraints: true,
+//   onDelete: "CASCADE",
+// });
+
+// sequelize
+//   .sync({ force: true })
+//   .then(() => {
+//     return User.findById(1);
+//   })
+//   .then((user) => {
+//     if (!user) {
+//       return User.create({
+//         name: "Teddy",
+//         password: "Teddy",
+//       });
+//     }
+//     return user;
+//   })
+//   .then(() => {
+//     app.listen(3000);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
