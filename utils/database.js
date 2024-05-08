@@ -22,18 +22,28 @@
 const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
 
+let _db;
+
 // mongodb+srv://ferdiamrullah23:<password>@cluster0.nnen8dj.mongodb.net/
 const mongoClient = (callback) => {
   MongoClient.connect(
-    "mongodb+srv://ferdiamrullah23:teddyferdian98@cluster0.nnen8dj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    "mongodb+srv://ferdiamrullah23:teddyferdian98@cluster0.nnen8dj.mongodb.net/school?retryWrites=true&w=majority&appName=Cluster0"
   )
     .then((client) => {
-      console.log("Connected");
-      callback(client);
+      _db = client.db();
+      callback();
     })
     .catch((err) => {
       console.log(err);
     });
 };
 
-module.exports = mongoClient;
+const getDb = () => {
+  if (_db) {
+    return _db;
+  }
+  throw "No Database Not Found!";
+};
+
+exports.mongoClient = mongoClient;
+exports.getDb = getDb;

@@ -3,21 +3,21 @@ const bodyParser = require("body-parser");
 const path = require("path");
 
 // Mongo DB
-const mongoClient = require("./utils/database");
+const { mongoClient } = require("./utils/database");
 
 const app = express();
 
 // Routes
 // const homeRoute = require("./routes/home");
 // const studentRoute = require("./routes/student");
-// const teacherRoute = require("./routes/teacher");
+const teacherRoute = require("./routes/teacher");
 
 // Controller
 const errorRoute = require("./controller/404");
 
 // Models
 // const Student = require("./models/student");
-// const Teacher = require("./models/teacher");
+const Teacher = require("./models/teacher");
 // const User = require("./models/user");
 
 // import sequelize
@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // app.use("/student", studentRoute);
 
 // Teacher Route
-// app.use("/teacher", teacherRoute);
+app.use("/teacher", teacherRoute);
 
 // Home Route
 // app.use(homeRoute);
