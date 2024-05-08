@@ -96,19 +96,14 @@ exports.postEditTeacher = (req, res, next) => {
 
 // Save New Teacher
 exports.postAddTeacher = (req, res, next) => {
-  req.user
-    .createTeacher(req.body)
-    .then(() => {
+  const teacher = new Teacher(req.body);
+  teacher
+    .saveTeacher()
+    .then((res) => {
+      console.log("RES =>", res);
       res.redirect("/teacher/teacher");
     })
     .catch((err) => {
-      console.log(err);
+      console.log("ERR =>", err);
     });
-  // Teacher.create(req.body)
-  //   .then(() => {
-  //     res.redirect("/teacher/teacher");
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
 };
