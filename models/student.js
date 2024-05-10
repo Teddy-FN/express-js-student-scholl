@@ -21,6 +21,19 @@ class Student {
         console.log("ERR STUDENT", err);
       });
   }
+
+  static fetchAllStudentData() {
+    const db = getDb();
+    return db
+      .collection("student")
+      .find()
+      .toArray()
+      .then((student) => {
+        console.log("student", student);
+        return student;
+      })
+      .catch((err) => console.log(err));
+  }
 }
 
 module.exports = Student;

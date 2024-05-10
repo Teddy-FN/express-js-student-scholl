@@ -2,7 +2,7 @@ const Teacher = require("../models/teacher");
 
 // Render Home Teacher List
 exports.renderTeacher = (req, res, next) => {
-  Teacher.findAll()
+  Teacher.fetchAllTeaherData()
     .then((teacher) => {
       res.render("teacher/index.ejs", {
         pageTitle: "Teacher List",
