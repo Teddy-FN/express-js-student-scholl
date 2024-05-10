@@ -3,7 +3,7 @@ const controller = require("../controller/student");
 const router = express.Router();
 
 // Home Student List Page
-router.get("/student", controller?.renderStundent);
+// router.get("/student", controller?.renderStundent);
 
 // Render Add Form
 router.get("/add-student", controller?.renderFormAddStudent);
@@ -12,15 +12,15 @@ router.get("/add-student", controller?.renderFormAddStudent);
 router.post("/add-student", controller?.postUser);
 
 // Details Student
-router.post("/student/:id", controller?.getDetailUser);
+// router.post("/student/:id", controller?.getDetailUser);
 
 // Edit Render
-router.get("/edit-student/:id", controller?.editRender);
+// router.get("/edit-student/:id", controller?.editRender);
 
 // Post Edit Student
-router.post("/edit-student/:id", controller?.postUpdatedStudent);
+// router.post("/edit-student/:id", controller?.postUpdatedStudent);
 
 // Delete Student
-router.post("/delete-student", controller?.deleteDataStudent);
+// router.post("/delete-student", controller?.deleteDataStudent);
 
 module.exports = router;

@@ -1,86 +1,26 @@
-// const fs = require("fs"),
-//   path = require("path");
+const { getDb } = require("../utils/database");
 
-// const p = path.join(
-//   path.dirname(process.mainModule.filename),
-//   "data",
-//   "user.json"
-// );
+class Student {
+  constructor(props) {
+    console.log("PROPS =>", props);
+    const { name, nim, address } = props;
+    this.name = name;
+    this.nim = nim;
+    this.address = address;
+  }
 
-// const getStudentFromFile = (cb) => {
-//   fs.readFile(p, (err, fileContent) => {
-//     if (err) {
-//       return cb([]);
-//     } else {
-//       cb(JSON.parse(fileContent));
-//     }
-//   });
-// };
-
-// module.exports = class Student {
-//   constructor(contrusctor) {
-//     this.name = contrusctor.name;
-//     this.nim = contrusctor.nim;
-//     this.address = contrusctor.address;
-//   }
-
-//   saveStudent() {
-//     // Save Using File
-//     this.id = Math.random().toString();
-//     getStudentFromFile((user) => {
-//       user.push(this);
-//       fs.writeFile(p, JSON.stringify(user), (err) => {
-//         console.log(err);
-//       });
-//     });
-//   }
-
-//   // Fetch All Student
-//   static fetchAllStudent(cb) {
-//     getStudentFromFile(cb);
-//   }
-
-//   // Delete Student
-//   static deleteStudent(id) {
-//     getStudentFromFile((students) => {
-//       const deleteStudentData = students.filter((student) => student.id !== id);
-//       fs.writeFile(p, JSON.stringify(deleteStudentData), (err) => {
-//         console.log(err);
-//       });
-//     });
-//   }
-
-//   // get Details
-//   static findById(id, cb) {
-//     getStudentFromFile((users) => {
-//       const getUser = users.find((items) => items.id === id);
-//       cb(getUser);
-//     });
-//   }
-// };
-
-// Using Sequelize
-const Sequelize = require("sequelize");
-const sequelize = require("../utils/database");
-const Student = sequelize.define("student", {
-  id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true,
-  },
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  nim: {
-    type: Sequelize.DOUBLE,
-    allowNull: false,
-  },
-  address: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-});
+  saveStudent() {
+    const db = getDb();
+    return db
+      .collection("student")
+      .insertOne(this)
+      .then((result) => {
+        console.log("RESULT STUDENT", result);
+      })
+      .catch((err) => {
+        console.log("ERR STUDENT", err);
+      });
+  }
+}
 
 module.exports = Student;

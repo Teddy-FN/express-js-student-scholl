@@ -26,21 +26,13 @@ exports.renderFormAddStudent = (req, res, next) => {
 
 // Add New User
 exports.postUser = (req, res, next) => {
-  req.user
-    .createStudent(req.body)
+  const student = new Student(req.body);
+  student
+    .saveStudent()
     .then(() => {
       res.redirect("/student/student");
     })
-    .catch((err) => {
-      console.log(err);
-    });
-  // Student.create(req.body)
-  //   .then(() => {
-  //     res.redirect("/student/student");
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
+    .catch();
 };
 
 // Get Detail
