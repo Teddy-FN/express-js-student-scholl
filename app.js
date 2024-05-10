@@ -9,7 +9,7 @@ const app = express();
 
 // Routes
 // const homeRoute = require("./routes/home");
-// const studentRoute = require("./routes/student");
+const studentRoute = require("./routes/student");
 const teacherRoute = require("./routes/teacher");
 
 // Controller
@@ -17,7 +17,7 @@ const errorRoute = require("./controller/404");
 
 // Models
 // const Student = require("./models/student");
-const Teacher = require("./models/teacher");
+// const Teacher = require("./models/teacher");
 // const User = require("./models/user");
 
 // import sequelize
@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Users Route
-// app.use("/student", studentRoute);
+app.use("/student", studentRoute);
 
 // Teacher Route
 app.use("/teacher", teacherRoute);
