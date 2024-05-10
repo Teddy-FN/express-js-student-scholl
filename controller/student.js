@@ -2,7 +2,7 @@ const Student = require("../models/student");
 
 // Index Student List
 exports.renderStundent = (req, res, next) => {
-  Student.findAll()
+  Student.fetchAllStudentData()
     .then((students) => {
       res.render("student/index.ejs", {
         pageTitle: "Student",

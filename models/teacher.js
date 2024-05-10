@@ -2,7 +2,6 @@ const { getDb } = require("../utils/database");
 
 class Teacher {
   constructor(props) {
-    console.log("PROPS =>", props);
     const { name, nim, phone, address } = props;
     this.name = name;
     this.nim = nim;
@@ -21,6 +20,22 @@ class Teacher {
       .catch((err) => {
         console.log("ERR =>", err);
       });
+  }
+
+  static fetchAllTeaherData() {
+    const db = getDb();
+    console.log(
+      'db.collection("teacher").find()',
+      db.collection("teacher").find().toArray()
+    );
+    return db
+      .collection("teacher")
+      .find()
+      .toArray()
+      .then((teacher) => {
+        return teacher;
+      })
+      .catch((err) => console.log(err));
   }
 }
 

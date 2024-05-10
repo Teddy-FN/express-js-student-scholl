@@ -3,7 +3,7 @@ const router = express.Router();
 const teacherController = require("../controller/teacher");
 
 // Home Teacher List Page
-// router.get("/teacher", teacherController?.renderTeacher);
+router.get("/teacher", teacherController?.renderTeacher);
 
 // Render Form
 router.get("/add-teacher", teacherController?.renderFormTeacher);
