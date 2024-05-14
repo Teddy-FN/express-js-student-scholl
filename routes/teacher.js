@@ -12,7 +12,7 @@ router.get("/add-teacher", teacherController?.renderFormTeacher);
 router.post("/add-teacher", teacherController?.postAddTeacher);
 
 // Get Detail By ID
-// router.post("/detail-teacher/:id", teacherController?.renderDetailTeacher);
+router.post("/detail-teacher/:id", teacherController?.renderDetailTeacher);
 
 // Delete Teacher
 // router.post("/delete-teacher", teacherController?.deleteDataTeacher);

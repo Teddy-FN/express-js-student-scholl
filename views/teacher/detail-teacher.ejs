@@ -9,9 +9,9 @@
       <p>Address:<%= teacher.address %></p>
       <a href="/teacher/teacher">Back To List</a>
       <form action="/teacher/delete-teacher" method="POST">
-        <input type="hidden" value="<%= teacher.id %>" name="id" id="id">
+        <input type="hidden" value="<%= teacher._id %>" name="id" id="id">
         <button type="submit">Delete Teacher</button>
       </form>
-      <a href="/teacher/edit-teacher/<%= teacher.id %>?edit=true">Edit Teacher</a>
+      <a href="/teacher/edit-teacher/<%= teacher._id %>?edit=true">Edit Teacher</a>
     </main>
 <%- include('../includes/end.ejs') %>
