@@ -12,7 +12,7 @@ router.get("/add-student", controller?.renderFormAddStudent);
 router.post("/add-student", controller?.postUser);
 
 // Details Student
-// router.post("/student/:id", controller?.getDetailUser);
+router.post("/student/:id", controller?.getDetailUser);
 
 // Edit Render
 // router.get("/edit-student/:id", controller?.editRender);
