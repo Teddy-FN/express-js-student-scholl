@@ -37,16 +37,13 @@ exports.postUser = (req, res, next) => {
 
 // Get Detail
 exports.getDetailUser = (req, res, next) => {
-  Student.findAll({
-    where: {
-      id: req.params.id,
-    },
-  })
+  Student.fetchDetailsStudentById(req.params.id)
     .then((student) => {
+      console.log("STUDENT =>", student);
       res.render("student/detail-student.ejs", {
         pageTitle: "Detail student",
         path: "/student/student",
-        user: student[0],
+        user: student,
       });
     })
     .catch((err) => console.log(err));
