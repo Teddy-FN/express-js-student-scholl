@@ -1,5 +1,5 @@
 const { getDb } = require("../utils/database");
-
+const mongoDb = require("mongodb");
 class Teacher {
   constructor(props) {
     const { name, nim, phone, address } = props;
@@ -22,6 +22,7 @@ class Teacher {
       });
   }
 
+  // FetchAll Teacher
   static fetchAllTeaherData() {
     const db = getDb();
     console.log(
@@ -32,6 +33,19 @@ class Teacher {
       .collection("teacher")
       .find()
       .toArray()
+      .then((teacher) => {
+        return teacher;
+      })
+      .catch((err) => console.log(err));
+  }
+
+  // GetDetailById
+  static fetchDetailTeacherById(id) {
+    const db = getDb();
+    return db
+      .collection("teacher")
+      .find({ _id: new mongoDb.ObjectId(id) })
+      .next()
       .then((teacher) => {
         return teacher;
       })

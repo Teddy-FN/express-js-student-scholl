@@ -17,11 +17,11 @@
                 <p>Name: <%= user.name %></p>
                 <p>Nim:<%= user.nim %></p>
                 <p>Address:<%= user.address %></p>
-                <form action="/teacher/detail-teacher/<%= user.id %>" method="POST">
+                <form action="/teacher/detail-teacher/<%= user._id %>" method="POST">
                     <button type="submit">Details Teacher</button>
                 </form>
                 <form action="/teacher/delete-teacher" method="POST">
-                  <input type="hidden" value="<%= user.id %>" name="id" id="id">
+                  <input type="hidden" value="<%= user._id %>" name="id" id="id">
                   <button type="submit">Delete Teacher</button>
                 </form>
              </li>
