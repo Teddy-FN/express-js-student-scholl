@@ -43,10 +43,7 @@ exports.renderDetailTeacher = (req, res, next) => {
 
 // Delete Data Teacher
 exports.deleteDataTeacher = (req, res, next) => {
-  Teacher.findById(req.body.id)
-    .then((teacher) => {
-      return teacher.destroy();
-    })
+  Teacher.deleteDataTeacherbyId(req.body.id)
     .then(() => {
       res.redirect("/teacher/teacher");
     })
