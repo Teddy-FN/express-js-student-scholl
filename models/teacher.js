@@ -39,7 +39,7 @@ class Teacher {
       .catch((err) => console.log(err));
   }
 
-  // GetDetailById
+  // Get Detail Teacher By Id
   static fetchDetailTeacherById(id) {
     const db = getDb();
     return db
@@ -50,6 +50,14 @@ class Teacher {
         return teacher;
       })
       .catch((err) => console.log(err));
+  }
+
+  // Delete Data Teacher By Id
+  static deleteDataTeacherbyId(id) {
+    const db = getDb();
+    return db
+      .collection("teacher")
+      .deleteOne({ _id: new mongoDb.ObjectId(id) });
   }
 }
 
