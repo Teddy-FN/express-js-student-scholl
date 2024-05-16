@@ -55,7 +55,6 @@ exports.renderEditFormTeacher = (req, res, next) => {
   const idTeacher = req.params.id;
   Teacher.findById(idTeacher)
     .then((teacher) => {
-      console.log("TEACHER =>", teacher);
       res.render("teacher/add-teacher.ejs", {
         pageTitle: "Add Teacher",
         path: "/teacher/teacher",
@@ -69,7 +68,6 @@ exports.renderEditFormTeacher = (req, res, next) => {
 
 // Save Edit Teacher
 exports.postEditTeacher = (req, res, next) => {
-  console.log("req.body =>", req.body);
   if (!req.body.id) {
     res.redirect("/teacher/teacher");
   }
@@ -93,10 +91,7 @@ exports.postAddTeacher = (req, res, next) => {
   teacher
     .saveTeacher()
     .then((res) => {
-      console.log("RES =>", res);
       res.redirect("/teacher/teacher");
     })
-    .catch((err) => {
-      console.log("ERR =>", err);
-    });
+    .catch((err) => console.log(err));
 };
