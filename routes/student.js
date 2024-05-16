@@ -21,6 +21,6 @@ router.post("/student/:id", controller?.getDetailUser);
 // router.post("/edit-student/:id", controller?.postUpdatedStudent);
 
 // Delete Student
-// router.post("/delete-student", controller?.deleteDataStudent);
+router.post("/delete-student", controller?.deleteDataStudent);
 
 module.exports = router;

@@ -39,7 +39,6 @@ exports.postUser = (req, res, next) => {
 exports.getDetailUser = (req, res, next) => {
   Student.fetchDetailsStudentById(req.params.id)
     .then((student) => {
-      console.log("STUDENT =>", student);
       res.render("student/detail-student.ejs", {
         pageTitle: "Detail student",
         path: "/student/student",
@@ -84,10 +83,9 @@ exports.postUpdatedStudent = (req, res, next) => {
 
 // Delete Data Student
 exports.deleteDataStudent = (req, res, next) => {
-  Student.findById(req.body.id)
+  Student.deleteDataStudentByid(req.body.id)
     .then((student) => {
-      return student.destroy();
+      res.redirect("/student/student");
     })
-    .then(() => res.redirect("/student/student"))
     .catch((err) => console.log(err));
 };
